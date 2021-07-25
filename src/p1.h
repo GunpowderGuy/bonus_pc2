@@ -20,15 +20,17 @@ void question_1_2();
 
 template <typename T> using MegaVec = std::vector<std::vector<T>>;
 
-template <typename T> MegaVec<T> join_sort(MegaVec<T> megacont) {
-  MegaVec<T> result;
+template <typename T> std::vector<T> join_sort(MegaVec<T> megacont) {
+  std::vector<T> result;
 
-  for (auto elem : megacont) {
+  for (auto cont : megacont) {
     // https://stackoverflow.com/questions/201718/concatenating-two-stdvectors
-    result.insert(std::end(result), std::begin(elem), std::end(elem));
+    result.insert(std::end(result), std::begin(cont), std::end(cont));
   }
   // https://stackoverflow.com/questions/947394/what-is-the-point-of-make-heap
   std::make_heap(begin(result), end(result));
+  //std::sort(result.begin(), result.end());
+  std::sort_heap(begin(result),end(result));
 
   return result;
 }
