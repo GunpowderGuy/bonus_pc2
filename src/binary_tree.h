@@ -337,6 +337,21 @@ public:
   size_t calculate_distance(node<T> origin, node<T> destination) {
     return size_t{};
   }
+
+  node<T> findLCA(node<T> root, node<T> n1, node<T> n2) {
+    if (root == n1 || root == n2) {
+      return root;
+    }
+
+    const auto left_lca = findLCA(root->left, n1, n2);
+    const auto right_lca = findLCA(root->right, n1, n2);
+
+    if (left_lca && right_lca) {
+      return root;
+    }
+
+    return (left_lca != NULL) ? left_lca : right_lca;
+  }
 };
 
 #endif // POO2_PC2_SEC02_V2021_1_BINARY_TREE_H
