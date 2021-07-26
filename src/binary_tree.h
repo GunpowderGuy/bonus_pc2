@@ -334,9 +334,12 @@ public:
     }
     return true;
   }
+
+  /*
   size_t calculate_distance(node<T> origin, node<T> destination) {
     return size_t{};
   }
+  */
 
   node<T> findLCA(node<T> root, node<T> n1, node<T> n2) {
     if (root == n1 || root == n2) {
@@ -351,6 +354,27 @@ public:
     }
 
     return (left_lca != NULL) ? left_lca : right_lca;
+  }
+
+  int findLevel(node<T> root, node<T> k, int level) {
+    // Base Case
+    if (root == NULL)
+      return -1;
+
+    // If key is present at root, or in left subtree
+    // or right subtree, return true;
+    if (root == k)
+      return level;
+
+    int l = findLevel(root->left, k, level + 1);
+    return (l != -1) ? l : findLevel(root->right, k, level + 1);
+  }
+
+  int calculate_distance(const node<T> n1, const node<T> n2) {
+    const auto lca = findLCA(get_root(), n1, n2);
+
+    return findLevel(get_root(), n1, 0) + findLevel(get_root(), n2, 0) +
+           2 * findLevel(get_root(), lca, 0);
   }
 };
 
