@@ -18,7 +18,7 @@ template <typename Container> Container focus_values(Container cnt) {
 void question_2_1();
 void question_2_2();
 
-std::vector<int> focus_values(const std::vector<int> &cont) {
+inline std::vector<int> focus_values(const std::vector<int> &cont) {
   map<int, int> mapa;
 
   for (const auto elem : cont) {
@@ -26,14 +26,23 @@ std::vector<int> focus_values(const std::vector<int> &cont) {
   }
 
   for (auto &elem : mapa) {
-    const int veces = count(begin(cont), end(cont), elem);
+    const int veces = count(begin(cont), end(cont), elem.first);
     elem.second = veces;
   }
 
   vector<int> result;
 
-  for (const auto elem : mapa) {
-    result.push_back(elem.first);
+  for (const auto elem : cont) {
+    auto &repeticiones = mapa[elem];
+    if (repeticiones != 0) {
+      result.insert(result.end(), repeticiones, elem);
+
+      // for (int i = 0; i < repeticiones; i++) {
+      //   result.push_back(elem);
+      // }
+
+      repeticiones = 0;
+    }
   }
 
   return result;
