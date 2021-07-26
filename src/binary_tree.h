@@ -342,6 +342,10 @@ public:
   */
 
   node<T> findLCA(node<T> root, node<T> n1, node<T> n2) {
+    if (root == NULL) {
+      return NULL;
+    }
+
     if (root == n1 || root == n2) {
       return root;
     }
