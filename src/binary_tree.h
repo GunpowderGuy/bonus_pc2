@@ -375,18 +375,14 @@ public:
   }
 
   int calculate_distance(const node<T> n1, const node<T> n2) {
-   // const auto raiz = this->get_root();
-
-    
+    const auto raiz = this->get_root();
     const auto lca = findLCA(this->get_root(), n1, n2);
 
-    return findLevel(get_root(), n1, 0) + findLevel(get_root(), n2, 0) -
-           2 * findLevel(get_root(), lca, 0);
-    
+    return findLevel(raiz, n1, 0) + findLevel(raiz, n2, 0) -
+           2 * findLevel(raiz, lca, 0);
 
-    //const auto lca = findLCA(raiz, n1, n2);
-
-    //return height_(n1, raiz) + height_(n2, raiz) - 2 * height_(lca, raiz);
+    // const auto lca = findLCA(raiz, n1, n2);
+    // return height_(n1, raiz) + height_(n2, raiz) - 2 * height_(lca, raiz);
   }
 };
 

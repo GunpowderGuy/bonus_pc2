@@ -36,11 +36,6 @@ inline std::vector<int> focus_values(const std::vector<int> &cont) {
     auto &repeticiones = mapa[elem];
     if (repeticiones != 0) {
       result.insert(result.end(), repeticiones, elem);
-
-      // for (int i = 0; i < repeticiones; i++) {
-      //   result.push_back(elem);
-      // }
-
       repeticiones = 0;
     }
   }
